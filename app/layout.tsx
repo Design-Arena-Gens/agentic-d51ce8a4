@@ -1,0 +1,67 @@
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import { Cairo } from "next/font/google";
+import "./globals.css";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const cairo = Cairo({
+  variable: "--font-cairo",
+  weight: ["300", "400", "600", "700"],
+  subsets: ["arabic"],
+});
+
+export const metadata: Metadata = {
+  title: "????? ???? ??????? ??????? ??????? ??????? ?????????",
+  description:
+    "???? ???? ?????? ???? ??????? ??????? ?? ???????? ??????? ?????????? ????? ????? ????? ?????? ?????? ?????.",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="ar" dir="rtl">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${cairo.variable} antialiased bg-background text-foreground`}
+      >
+        <header className="border-b border-black/10 dark:border-white/10 bg-white/70 dark:bg-black/30 backdrop-blur">
+          <nav className="mx-auto max-w-6xl px-4 sm:px-6">
+            <div className="flex h-14 items-center justify-between">
+              <a href="/" className="text-lg font-semibold">
+                ????? ??????? ???????
+              </a>
+              <div className="flex items-center gap-4 text-sm">
+                <a className="hover:underline" href="/checklist">
+                  ????? ??????
+                </a>
+                <a className="hover:underline" href="/resources">
+                  ???????
+                </a>
+                <a className="hover:underline" href="/faq">
+                  ????? ?????
+                </a>
+              </div>
+            </div>
+          </nav>
+        </header>
+        <main className="mx-auto max-w-6xl px-4 sm:px-6 py-10">{children}</main>
+        <footer className="mt-16 border-t border-black/10 dark:border-white/10">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 py-6 text-xs text-zinc-600 dark:text-zinc-400">
+            ??? ?????? ?????? ??????? ???? ????? ??????? ???????.
+          </div>
+        </footer>
+      </body>
+    </html>
+  );
+}
